@@ -18,11 +18,9 @@ A sample application demonstrating integration of the [ArcGIS API for JavaScript
 ### Configure the application
 
 1. Set this repo up as a URL on your webserver (e.g. http://localhost/pizzafinder)
-2. Unzip the [Sencha Touch download](http://www.sencha.com/products/touch/download/) to the same parent, and name it sencha (e.g. http://localhost/sencha). A symlink will do.
+2. Unzip the [Sencha Touch download](http://www.sencha.com/products/touch/download/) to the repo's parent, and name it sencha (e.g. http://localhost/sencha). A symlink will do.
 
-Browse to the web page (e.g.http://localhost/pizzafinder). Best viewed in Safari on an iPhone.
-
-Note, for full functionality, see "Proxy Page" below.
+Browse to the web page (e.g.http://localhost/pizzafinder). Best viewed in Safari on an iPhone. Note: this application makes use of a proxy page for full functionality (see below).
 
 ### Proxy page
 This sample includes a PHP proxy page. Your Web Server must be enabled for PHP.
