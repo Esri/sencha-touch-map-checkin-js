@@ -26,6 +26,10 @@ Ext.define('PF.controller.Main', {
 	geocodeServiceURL: "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
 	driveTimeServiceURL: "http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Network/ESRI_DriveTime_US/GPServer/CreateDriveTimePolygons",
 
+    requires:[
+    	'Ext.MessageBox'
+    ],
+
 	config: {
 		refs: {
 			// Get Sencha to give us a handle on the main PizzaFinderMap View instance

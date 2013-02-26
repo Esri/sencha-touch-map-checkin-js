@@ -21,6 +21,10 @@ Ext.define('PF.controller.PizzaShop', {
 	directionsServiceURL: "http://tasks.arcgisonline.com/ArcGIS/rest/services/NetworkAnalysis/ESRI_Route_NA/NAServer/Route",
 	geometryServiceURL: "http://tasks.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer",
 
+    requires:[
+    	'Ext.MessageBox'
+    ],
+
 	config: {
 		// Let's define handles onto the various Views we want to control
 		refs: {

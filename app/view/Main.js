@@ -69,9 +69,16 @@ Ext.define("PF.view.Main", {
 								placeHolder: 'Enter an address',
 								listeners: {
 									action: function(c,e,o) {
+										var address = c.getValue();
+										if (address === "")
+										{
+											Ext.Msg.alert("Empty Search!", "Enter a place name or address!");
+											return false;
+										}
+
 										var mapView = c.up('#searchPanel').down('#mainPizzaMap');
 										c.up('#singleLineAddressPanel').hide();
-										mapView.locateToAddress(c.getValue());
+										mapView.locateToAddress(address);
 										return false;
 									},
 									clearicontap: function(c,e,o) {
@@ -182,18 +189,5 @@ Ext.define("PF.view.Main", {
 				]
 			}
 		]
-	},
-	
-	initialize: function() {
-		this.callParent();
-		
-		this.on({
-			pop: function(a,b,c) {
-				console.log("POP!");
-			},
-			push: function(a,b,c) {
-				console.log("PUSH!");
-			}
-		});
 	}
 });

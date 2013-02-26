@@ -1,6 +1,11 @@
 Ext.define('PF.view.PizzaFinderMap', {
     extend:'PF.view.EsriMap',
     xtype:'pizzafindermap',
+    
+    requires:[
+    	'Ext.MessageBox'
+    ],
+    
     config:{
 		canClickToSelectFeatures:true
     },
@@ -187,7 +192,7 @@ Ext.define('PF.view.PizzaFinderMap', {
 		}
 		else
 		{
-			Ext.Msg.alert('Sorry', 'There\'s no pizza nearby!');
+			Ext.Msg.alert('Sorry', 'There\'s no pizza nearby! The sample layer has pizza shops in Chicago and San Francisco.');
 		}
 	}
 });
