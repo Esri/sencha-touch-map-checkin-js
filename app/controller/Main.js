@@ -23,7 +23,7 @@ Ext.define('PF.controller.Main', {
 
 	// Service URL Endpoints.
 	poiServiceURL: "http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/SF_Chi_Bell_POI/FeatureServer/0",
-	geocodeServiceURL: "http://tasks.arcgisonline.com/ArcGIS/rest/services/Locators/TA_Address_NA_10/GeocodeServer",
+	geocodeServiceURL: "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
 	driveTimeServiceURL: "http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Network/ESRI_DriveTime_US/GPServer/CreateDriveTimePolygons",
 
 	config: {

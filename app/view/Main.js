@@ -136,20 +136,20 @@ Ext.define("PF.view.Main", {
 						defaults:{flex:1},
 						items:
 						[
-							{
-								xtype: 'button',
-								text:'Me',
-								handler: function() {
-									var enterAddressBox = this.up('#searchPanel').down('#singleLineAddressPanel');
-									var clickOnMapPanel = this.up('#searchPanel').down('#clickingOnMapPanel');
-
-									enterAddressBox.hide();
-									clickOnMapPanel.hide();
-
-									PF.mainPizzaFinderMapView.locateToMe();
-									PF.mainPizzaFinderMapView.waitingForTapToFind = false;
-								}
-							},
+// 							{
+// 								xtype: 'button',
+// 								text:'Me',
+// 								handler: function() {
+// 									var enterAddressBox = this.up('#searchPanel').down('#singleLineAddressPanel');
+// 									var clickOnMapPanel = this.up('#searchPanel').down('#clickingOnMapPanel');
+// 
+// 									enterAddressBox.hide();
+// 									clickOnMapPanel.hide();
+// 
+// 									PF.mainPizzaFinderMapView.locateToMe();
+// 									PF.mainPizzaFinderMapView.waitingForTapToFind = false;
+// 								}
+// 							},
 							{
 								xtype: 'button',
 								text:'Address',
@@ -182,5 +182,18 @@ Ext.define("PF.view.Main", {
 				]
 			}
 		]
+	},
+	
+	initialize: function() {
+		this.callParent();
+		
+		this.on({
+			pop: function(a,b,c) {
+				console.log("POP!");
+			},
+			push: function(a,b,c) {
+				console.log("PUSH!");
+			}
+		});
 	}
 });

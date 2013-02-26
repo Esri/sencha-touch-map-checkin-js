@@ -7,17 +7,21 @@ Ext.define('PF.view.EsriMap', {
         map:null,
         mapOptions:{
 			navigationMode:'css-transforms',
-			wrapAround180:true
+			wrapAround180:true,
+			autoResize:false
 		},
 		basemapLayer:"http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
 		mapID:null,
 		mapWidth:"100%",
 		mapHeight:"100%",
 		mapInitializerFunction:'initMap',
-		recenterOnResize: true
+		recenterOnResize: true,
+		inResizableState: false,
+		centerHandler: null
     },
 
 	__lastCenterPoint:null,
+	__erased:true,
 
     initialize:function () {
         this.callParent();
@@ -53,18 +57,62 @@ Ext.define('PF.view.EsriMap', {
 			single:true
 		});
 		
-        this.on({
-            resize: { 
-				buffer: 40, 
-				fn: this.resizeHandler
+		// We stop the map updating when it's removed from the DOM.
+		this.onBefore({
+			erased:function(a,b)
+			{
+				// We have to track things ourselves - perhaps events are queued.
+				// Unexpectedly, Resize gets called even after we call un() below.
+				this.__erased = true;
+// 				console.log("ERASED MAP! " + this.getMapID());
+				this.un({
+					resize:this.onActiveResize
+				});
+				
+				var ch = this.getCenterHandler();
+				if (ch)
+				{
+					ch.pause();
+				}
 			},
-            scope:this
-        });
+		});
+
+		// And when it's put back into the DOM we can start tracking again.
+		this.on({
+			painted:function(a,b)
+			{
+				this.__erased = false;
+// 				console.log("PAINTED MAP! " + this.getMapID());
+				this.on({
+					resize:this.onActiveResize,
+					buffer:100
+				});
+				
+				var ch = this.getCenterHandler();
+				if (ch)
+				{
+					ch.resume();
+				}
+			},
+		});
 
 		this.on({
-			painted: this.resizeHandler,
-			scope: this
+			resize:this.onActiveResize,
+			buffer:100
 		});
+    },
+    
+    onActiveResize:function(a,b) {
+//     	console.log("TRY RESIZE MAP! " + this.getMapID());
+		if (!this.__erased)
+		{
+// 			console.log("RESIZE MAP! " + this.getMapID());
+			var map = this.getMap();
+			if (map)
+			{
+				map.resize();
+			}
+		}
     },
 
     onTouchStart:function (e) {
@@ -89,15 +137,17 @@ Ext.define('PF.view.EsriMap', {
             var basemap = new esri.layers.ArcGISTiledMapServiceLayer(basemapUrl);
             map.addLayer(basemap);
 
-			map.senchaContainer = this;
-			
             this.setMap(map);
         }
 
 		if (this.getRecenterOnResize())
 		{
 			dojo.connect(map, 'onExtentChange', this.extentChanged);	
-			dojo.connect(map, 'onResize', this.recenterAfterResize);
+			var senchaMap = this;
+			require(["dojo/on"], function(on) {
+				var centerHandler = on.pausable(map, "resize", senchaMap.recenterAfterResize);
+				senchaMap.setCenterHandler(centerHandler);
+			});
 		}
 		
 		// We see whether any class inheriting from us has an init method we should call for their own
@@ -120,23 +170,17 @@ Ext.define('PF.view.EsriMap', {
 		}
     },
 
-    resizeHandler:function () {
-		// Ensure the map resizes whenever it needs to (device orientation, etc.)
-        var map = this.getMap();
-        if (map) {
-            map.resize();
-        }
-    },
-
 	extentChanged: function(extent, delta, levelChange, lod) {
+// 		console.log("EXTENT CHANGED MAP! " + this.id);
 		var newCenter = extent.getCenter();
-		this.senchaContainer.__lastCenterPoint = newCenter;
+		this.__lastCenterPoint = newCenter;
 	},
 
 	recenterAfterResize: function(extent, width, height) {
-		var newCenter = this.senchaContainer.__lastCenterPoint
-		var map = this.senchaContainer.getMap();
+		var newCenter = this.__lastCenterPoint
+		var map = this;
 		setTimeout(function() {
+// 			console.log("CENTER MAP! " + map.id);
 			map.centerAt(newCenter);
 		}, 200);
 	},

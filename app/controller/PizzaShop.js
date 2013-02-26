@@ -18,8 +18,8 @@ Ext.define('PF.controller.PizzaShop', {
     extend: 'Ext.app.Controller',
 
 	// Service URL Endpoints.
-	geometryServiceURL: "http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer",
 	directionsServiceURL: "http://tasks.arcgisonline.com/ArcGIS/rest/services/NetworkAnalysis/ESRI_Route_NA/NAServer/Route",
+	geometryServiceURL: "http://tasks.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer",
 
 	config: {
 		// Let's define handles onto the various Views we want to control
