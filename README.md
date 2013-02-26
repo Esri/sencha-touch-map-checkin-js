@@ -3,6 +3,8 @@ sencha-touch-map-checkin-js
 
 A sample application demonstrating integration of the [ArcGIS API for JavaScript](http://help.arcgis.com/en/webapi/javascript/arcgis/jshelp/#overview_api) with [Sencha Touch](http://www.sencha.com/products/touch). The application makes use of the Service Area task, querying an ArcGIS Online Feature Service, and writing checkin/checkout information to additional ArcGIS Feature Services.
 
+**[View it live](http://edn1.esri.com/m/pizzafinder/)**
+
 ![PizzaFinder](https://raw.github.com/Esri/sencha-touch-map-checkin-js/master/sencha-touch-map-checkin-js.jpg)
 
 ## Features
