@@ -64,7 +64,6 @@ Ext.define('PF.view.EsriMap', {
 				// We have to track things ourselves - perhaps events are queued.
 				// Unexpectedly, Resize gets called even after we call un() below.
 				this.__erased = true;
-// 				console.log("ERASED MAP! " + this.getMapID());
 				this.un({
 					resize:this.onActiveResize
 				});
@@ -82,7 +81,6 @@ Ext.define('PF.view.EsriMap', {
 			painted:function(a,b)
 			{
 				this.__erased = false;
-// 				console.log("PAINTED MAP! " + this.getMapID());
 				this.on({
 					resize:this.onActiveResize,
 					buffer:100
@@ -103,10 +101,8 @@ Ext.define('PF.view.EsriMap', {
     },
     
     onActiveResize:function(a,b) {
-//     	console.log("TRY RESIZE MAP! " + this.getMapID());
 		if (!this.__erased)
 		{
-// 			console.log("RESIZE MAP! " + this.getMapID());
 			var map = this.getMap();
 			if (map)
 			{
@@ -171,7 +167,6 @@ Ext.define('PF.view.EsriMap', {
     },
 
 	extentChanged: function(extent, delta, levelChange, lod) {
-// 		console.log("EXTENT CHANGED MAP! " + this.id);
 		var newCenter = extent.getCenter();
 		this.__lastCenterPoint = newCenter;
 	},
@@ -180,7 +175,6 @@ Ext.define('PF.view.EsriMap', {
 		var newCenter = this.__lastCenterPoint
 		var map = this;
 		setTimeout(function() {
-// 			console.log("CENTER MAP! " + map.id);
 			map.centerAt(newCenter);
 		}, 200);
 	},
