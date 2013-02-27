@@ -29,6 +29,15 @@ This sample includes a PHP proxy page. Your Web Server must be enabled for PHP.
 
 If you prefer to use ASP.NET or Java/JSP, refer to [this page](http://help.arcgis.com/en/webapi/javascript/arcgis/jshelp/#ags_proxy) and change the reference in [app.js](https://raw.github.com/Esri/sencha-touch-map-checkin-js/master/app.js)
 
+### Development vs Production
+Note, this repo includes the source for working in development mode. The project has been tested for production compilation with Sencha Cmd v3.0.2.288.
+
+To build the project, ignore the [Sencha documentation](http://docs.sencha.com/touch/2-1/#!/guide/building). It's woefully, perhaps maliciously out of date. Instead, install the [Sencha Cmd](http://docs.sencha.com/touch/2-1/#!/guide/command), cd to this repo, and run the following command:
+```
+sencha app build production
+```
+You can then visit your compact, minified, production build at e.g. http://localhost/pizzafinder/build/PF/Production
+
 [New to Github? Get started here.](http://htmlpreview.github.com/?https://github.com/Esri/esri.github.com/blob/master/help/esri-getting-to-know-github.html)
 
 ## Requirements

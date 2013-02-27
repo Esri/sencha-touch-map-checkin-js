@@ -73,7 +73,7 @@ Ext.define('PF.view.EsriMap', {
 				{
 					ch.pause();
 				}
-			},
+			}
 		});
 
 		// And when it's put back into the DOM we can start tracking again.
@@ -91,7 +91,7 @@ Ext.define('PF.view.EsriMap', {
 				{
 					ch.resume();
 				}
-			},
+			}
 		});
 
 		this.on({
@@ -172,7 +172,7 @@ Ext.define('PF.view.EsriMap', {
 	},
 
 	recenterAfterResize: function(extent, width, height) {
-		var newCenter = this.__lastCenterPoint
+		var newCenter = this.__lastCenterPoint;
 		var map = this;
 		setTimeout(function() {
 			map.centerAt(newCenter);

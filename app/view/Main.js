@@ -1,4 +1,4 @@
-Ext.define("PF.view.Main", {
+Ext.define('PF.view.Main', {
 	extend:"Ext.NavigationView",
 	xtype:"mainview",
 	requires: [
@@ -7,7 +7,7 @@ Ext.define("PF.view.Main", {
 		'Ext.Sheet',
 		'Ext.Label',
 		'Ext.Img',
-		'Ext.Toolbar',
+		'Ext.Toolbar'
 	],
 	config:
 	{
@@ -34,9 +34,20 @@ Ext.define("PF.view.Main", {
 							baseMapLayer:"http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
 							mapOptions:
 							{
-								extent:new esri.geometry.Extent(-13900983.502243, 90052.215888, 
-									-7639262.145123, 9091276.666748,
-									new esri.SpatialReference({"wkid":102100}))
+								// If we reference esri components from the statically defined structure
+								// of the Sencha component (rather than in a function definition) we will
+								// get errors in production, since all this code is bundled up and loaded
+								// with evaluate(), potentially before dojo has loaded. In that case (like here)
+								// we simply wrap in an anonymous function which we call in-line...
+								// Like this:
+								// (function () { return esri.foo() }) ()
+								// 
+								// It's unfortunate, but thankfully rarely necessary.
+								extent:(function() {
+											return new esri.geometry.Extent(-13900983.502243, 90052.215888, 
+																			-7639262.145123, 9091276.666748,
+																			new esri.SpatialReference({"wkid":102100}))
+										})()
 							}
 						}]
 					},

@@ -15,7 +15,7 @@ Ext.define('PF.view.PizzaShop', {
 				id: 'localMap',
 				xtype: 'pizzashopmap',
 	            style: 'background-color: #5E99CC;',
-	            height: '140px',
+	            height: '140px'
 	        },
 			{
 				xtype: 'panel',
@@ -34,7 +34,7 @@ Ext.define('PF.view.PizzaShop', {
 								items:
 								[
 								{ xtype: 'label', html: 'Address:' },
-								{ id:'shopAddress', xtype: 'label', padding: '0 0 0 5' },
+								{ id:'shopAddress', xtype: 'label', padding: '0 0 0 5' }
 								]
 							},
 							{
@@ -43,7 +43,7 @@ Ext.define('PF.view.PizzaShop', {
 								items:
 								[
 								{ xtype: 'label', html: 'Phone:' },
-								{ id:'shopPhone', xtype: 'label', padding: '0 0 0 5' },
+								{ id:'shopPhone', xtype: 'label', padding: '0 0 0 5' }
 								]
 							},
 							{
@@ -52,7 +52,7 @@ Ext.define('PF.view.PizzaShop', {
 								items:
 								[
 								{ xtype: 'label', html: 'Drive Time:' },
-								{ id:'shopDriveTime', xtype: 'label', padding: '0 0 0 5' },
+								{ id:'shopDriveTime', xtype: 'label', padding: '0 0 0 5' }
 								]
 							},
 							{
@@ -61,9 +61,9 @@ Ext.define('PF.view.PizzaShop', {
 								items:
 								[
 								{ xtype: 'label', html: 'Rating:' },
-								{ id:'shopRating', xtype: 'label', width:80, height:15 },
+								{ id:'shopRating', xtype: 'label', width:80, height:15 }
 								]
-							},
+							}
 						]
 					}
 				]

@@ -1,3 +1,4 @@
-sdk20
-sdk201rc
 *.scssc
+
+archive/
+build/

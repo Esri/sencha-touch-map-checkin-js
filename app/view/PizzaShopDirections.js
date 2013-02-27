@@ -89,7 +89,7 @@ Ext.define('PF.view.PizzaShopDirections', {
 						},
 						itemTpl:'<div class="ddl"><div class="ddl-index" routestep="{index}">{displayindex}:</div><div class="ddl-desc">{description}</div></div>'
 						// itemTpl:'<div>{index}{displayindex}{description}</div>'
-					},
+					}
 				]
 			},
 			{

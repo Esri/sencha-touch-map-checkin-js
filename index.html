@@ -1,20 +1,78 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html manifest="" lang="en-US">
 <head>
-  <meta charset="UTF-8">
-  <title>Pizza Finder</title>
- <link rel="stylesheet" href="sdk/resources/css/sencha-touch.css" type="text/css">
-  <link rel="stylesheet" href="resources/css/app.css" type="text/css">
+    <meta charset="UTF-8">
+    <title>Pizza Finder</title>
 
-    <link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/dojo/dijit/themes/claro/claro.css">
-    <link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/esri/css/esri.css">
+	<!-- ArcGIS API for JavaScript -->
+	<link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/dojo/dijit/themes/claro/claro.css">
+	<link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/esri/css/esri.css">
+	
+	<script type="text/javascript">var dojoConfig = { parseOnLoad:true };</script>
+	<script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.3compact"></script>
 
-  <script type="text/javascript">var dojoConfig = { parseOnLoad:true };</script>
-  <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.3compact"></script>
+	<!-- PizzaFinder -->
+	<link rel="stylesheet" href="resources/css/pf.css" type="text/css">
 
-    <script id="microloader" type="text/javascript" src="sdk/microloader/development.js"></script>
+	<!-- Sencha Touch -->
+    <!-- The line below must be kept intact for Sencha Command to build your application -->
+    <script id="microloader" type="text/javascript" src="touch/microloader/development.js"></script>
+
+    <style type="text/css">
+         /**
+         * Example of an initial loading indicator.
+         * It is recommended to keep this as minimal as possible to provide instant feedback
+         * while other resources are still being loaded for the first time
+         */
+        html, body {
+            height: 100%;
+            background-color: #1985D0
+        }
+
+        #appLoadingIndicator {
+            position: absolute;
+            top: 50%;
+            margin-top: -15px;
+            text-align: center;
+            width: 100%;
+            height: 30px;
+            -webkit-animation-name: appLoadingIndicator;
+            -webkit-animation-duration: 0.5s;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-direction: linear;
+        }
+
+        #appLoadingIndicator > * {
+            background-color: #FFFFFF;
+            display: inline-block;
+            height: 30px;
+            -webkit-border-radius: 15px;
+            margin: 0 5px;
+            width: 30px;
+            opacity: 0.8;
+        }
+
+        @-webkit-keyframes appLoadingIndicator{
+            0% {
+                opacity: 0.8
+            }
+            50% {
+                opacity: 0
+            }
+            100% {
+                opacity: 0.8
+            }
+        }
+    </style>
 </head>
-<body><div id='browserWarning' style='display:none'>This application is built using <a href='http://www.sencha.com/products/touch/'>Sencha Touch</a> to give you a native feeling application in your Android, iOS, or Blackberry browser.<br/>
+<body>
+    <div id="appLoadingIndicator">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div id='browserWarning' style='display:none'>This application is built using <a href='http://www.sencha.com/products/touch/'>Sencha Touch</a> to give you a native feeling application in your Android, iOS, or Blackberry browser.<br/>
 You need a webkit compatible browser (such as <a href='https://www.google.com/chrome'>Chrome</a> or <a href='http://www.apple.com/safari/'>Safari</a>) to use this application.<br/>
-Unfortunately, Firefox is not supported at this time.</div></body>
+Unfortunately, Firefox is not supported at this time.</div>
+</body>
 </html>
