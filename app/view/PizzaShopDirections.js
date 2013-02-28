@@ -2,6 +2,7 @@ Ext.define('PF.view.PizzaShopDirections', {
     extend:'Ext.Panel',
     xtype:'pizzashopdirections',
 	id:'pizzaShopDirectionsView',
+	requires:['Ext.dataview.DataView'],
     config:{
 		map:null,
 

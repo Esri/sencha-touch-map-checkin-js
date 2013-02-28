@@ -24,7 +24,7 @@ Ext.define('PF.controller.Main', {
 	// Service URL Endpoints.
 	poiServiceURL: "http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/SF_Chi_Bell_POI/FeatureServer/0",
 	geocodeServiceURL: "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
-	driveTimeServiceURL: "http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Network/ESRI_DriveTime_US/GPServer/CreateDriveTimePolygons",
+	driveTimeServiceURL: "http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Network/USA/NAServer/Service%20Area",
 
     requires:[
     	'Ext.MessageBox'
@@ -59,7 +59,7 @@ Ext.define('PF.controller.Main', {
 	pizzaShopFeatureService:null,
 	
 	// Set up some drive time properties.
-	driveTimes:"1 2 3",
+	driveTimes:[1,2,3],
 	driveTimeResults:null,
 
 	// And initialise after the UI has been set up.
@@ -68,7 +68,7 @@ Ext.define('PF.controller.Main', {
 		this.pizzaShopFeatureService = new esri.tasks.QueryTask(this.poiServiceURL);
 
 		// Setup Geoprocessing Service to generate drive time polygons
-		this.driveTimeService = new esri.tasks.Geoprocessor(this.driveTimeServiceURL);
+		this.driveTimeService = new esri.tasks.ServiceAreaTask(this.driveTimeServiceURL);
 
 		// And to find addresses that are entered
 		this.geocodeService = new esri.tasks.Locator(this.geocodeServiceURL);
@@ -217,6 +217,14 @@ Ext.define('PF.controller.Main', {
 				xtype:'loadmask',
 				message:'Calculating Drivetimes...'
 			});
+			
+			
+		var map = this.getPizzaShopsMap().getMap();
+
+		var driveTimeParams = new esri.tasks.ServiceAreaParameters();
+		driveTimeParams.defaultBreaks= this.driveTimes;
+		driveTimeParams.outSpatialReference = map.spatialReference;
+		driveTimeParams.returnFacilities = false;
 
 		// Set up the drivetime service parameters
         var featureSet = new esri.tasks.FeatureSet();
@@ -224,12 +232,8 @@ Ext.define('PF.controller.Main', {
         features.push(new esri.Graphic(geom));
         featureSet.features = features;
 
-        var params = { "Input_Location":featureSet, "Drive_Times":this.driveTimes };
-
-		// Call the drive time service.
-		var map = this.getPizzaShopsMap().getMap();
-        this.driveTimeService.setOutSpatialReference(map.spatialReference);
-		this.driveTimeService.execute(params, this.processDriveTimeResults, this.drivetimeServiceFailed);
+		driveTimeParams.facilities = featureSet;
+		this.driveTimeService.solve(driveTimeParams, this.processDriveTimeResults, this.drivetimeServiceFailed);
 	},
 	
 	drivetimeServiceFailed: function(error) {
@@ -247,7 +251,7 @@ Ext.define('PF.controller.Main', {
 		// Let's give ourselves some better context...
 		var thisController = PF.app.getController("Main");
 
-	    thisController.driveTimeResults = results[0].value.features;
+	    thisController.driveTimeResults = results.serviceAreaPolygons;
 		
 		// Show the results on the map.
 		var outF = thisController.getPizzaShopsMap().showDriveTimePolygons(thisController.driveTimeResults);

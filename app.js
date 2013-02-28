@@ -2,7 +2,7 @@ dojo.require('esri.map');
 dojo.require("esri.geometry");
 dojo.require('esri.layers.FeatureLayer');
 dojo.require("esri.tasks.geometry");
-dojo.require("esri.tasks.gp");
+dojo.require("esri.tasks.servicearea");
 dojo.require("esri.tasks.locator");
 dojo.require("esri.tasks.route");
 
