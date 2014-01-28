@@ -1,0 +1,62 @@
+.x-dataview-item .ddl {
+	padding: 1px;
+	
+}
+
+.x-dataview-item.x-item-selected .ddl {
+	border: 1px solid black;
+	padding: 0px;
+}
+
+.x-dataview-item .ddl-index {
+	position:absolute;
+	font-size: medium;
+}
+
+.x-dataview-item .ddl-desc {
+	position:relative;
+	left:20px;
+	margin-right: 20px;
+	font-size: medium;
+}
+
+/* Fix title truncation in Chrome */
+.x-title .x-innerhtml {
+  padding: 0em;
+}
+
+.checkin-display {
+	background-color: #CCCCCC;
+	font-size: medium;
+}
+
+.checkin-rating-1, ..checkin-rating-2, .checkin-rating-3, .checkin-rating-4, .checkin-rating-5
+{
+	background:center center no-repeat;
+}
+
+.checkin-rating-1 {
+	background-image:url('../images/stars-1.png');
+}
+
+.checkin-rating-2 {
+	background-image:url('../images/stars-2.png');
+}
+
+.checkin-rating-3 {
+	background-image:url('../images/stars-3.png');
+}
+
+.checkin-rating-4 {
+	background-image:url('../images/stars-4.png');
+}
+
+.checkin-rating-5 {
+	background-image:url('../images/stars-5.png');
+}
+
+#clickingOnMapPanel {
+	background-color: rgba(50, 50, 50, 0.95);
+	border-top: 1px solid rgba(40, 40, 40);
+	background-image: none;
+}
